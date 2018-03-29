@@ -1,0 +1,64 @@
+$def with(res, keyword, recommand)
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta  charset="utf-8" />
+		<title>Text search page of the search engine</title>
+	</head>
+	
+	<body>
+           <form action="/searching" method="GET">
+                <div style="font-size:31px">
+				<input type="radio" name="search_kind" value="text" id="text" checked="checked"  style="width:62px;height:62px;vertical-align:middle;"><label for="text" style="vertical-align:middle;">text_search</label>
+				<input type="radio" name="search_kind" value="img" id="img" style="width:62px;height:62px;vertical-align:middle;"><label for="img"style="vertical-align:middle;">img_search</label><br />
+                </div> 
+				<nobr>
+                <a href="/"><img  src="static/logo.jpg" style="background-size:100% 100%;width:124px;height:62px;vertical-align:middle;"></a>
+				<input type="text" name="keyword" id="keyword"  placeholder=$keyword style="font-size:31px;width:600px;height:62px;vertical-align:middle;"> 
+				<input type="submit" value="" style="background:url(static/button.jpg);background-size:100% 100%;width:62px;height:62px;vertical-align:middle;">
+				</nobr>
+        </form>
+        <br />
+        <br />
+        <hr />        
+
+    $if(len(res)==0):
+        <font size="10px">Sorry, there aren't any results about $keyword</font>
+    $else:
+        There are $len(res) results
+        <br />
+
+    $for item in res:
+        <a href=$item[1]>
+        <font color="#0000CC" size="6">
+        $:item[0] <br /></font></a>
+        <font size="4">
+        $:item[2] <br /></font>
+        <font color="#008000" size="3">
+        $:item[1] <br />
+        </font>
+        <br />
+
+    $if len(recommand)==9:
+        <strong style="font-size:30px"> Relevant Search</strong>
+            <table>
+                <tr>
+                    <td ><a href="/searching?keyword=$recommand[0]&search_kind=text">$recommand[0]</a></td>
+                    <td ><a href="/searching?keyword=$recommand[1]&search_kind=text">$recommand[1]</a></td>
+                    <td ><a href="/searching?keyword=$recommand[2]&search_kind=text">$recommand[2]</a></td>
+                </tr>
+                <tr>
+                    <td ><a href="/searching?keyword=$recommand[3]&search_kind=text">$recommand[3]</a></td>
+                    <td ><a href="/searching?keyword=$recommand[4]&search_kind=text">$recommand[4]</a></td>
+                    <td ><a href="/searching?keyword=$recommand[5]v">$recommand[5]</a></td>
+                </tr>
+                <tr>
+                    <td ><a href="/searching?keyword=$recommand[6]&search_kind=text">$recommand[6]</a></td>
+                    <td ><a href="/searching?keyword=$recommand[7]&search_kind=text">$recommand[7]</a></td>
+                    <td ><a href="/searching?keyword=$recommand[8]&search_kind=text">$recommand[8]</a></td>
+                </tr>
+            </table>
+
+
+	</body>
+</html>

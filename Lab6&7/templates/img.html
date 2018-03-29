@@ -1,0 +1,43 @@
+$def with(res, keyword)
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta  charset="utf-8" />
+		<title>Img search page of $keyword</title>
+	</head>
+	
+	<body>
+           <form action="/searching" method="GET">
+                <div style="font-size:31px">
+				<input type="radio" name="search_kind" value="text" id="text"  style="width:62px;height:62px;vertical-align:middle;"><label for="text" style="vertical-align:middle;">text_search</label>
+				<input type="radio" name="search_kind" value="img" id="img" checked="checked"  style="width:62px;height:62px;vertical-align:middle;"><label for="img"style="vertical-align:middle;">img_search</label><br />
+                </div> 
+				<nobr>
+                <a href="/"><img  src="static/logo.jpg" style="background-size:100% 100%;width:124px;height:62px;vertical-align:middle;"></a>
+				<input type="text" name="keyword" id="keyword"  placeholder=$keyword style="font-size:31px;width:600px;height:62px;vertical-align:middle;"> 
+				<input type="submit" value="" style="background:url(static/button.jpg);background-size:100% 100%;width:62px;height:62px;vertical-align:middle;">
+				</nobr>
+        </form>
+        <br />
+        <br />
+        <hr />
+    
+    $if(len(res)==0):
+        <font size="10px">Sorry, there aren't any results about $keyword</font>
+    $else:
+        There are $len(res) results
+        <br />
+    <div style="margin:50px;">
+
+    $for item in res:    
+        <div style="float:left;width:400px; height:500px;">
+        <a href=$item[2]> <img src=$item[1] width="350px" style="background-size:100% 100%;vertical-align:middle;"><img></a><br />
+        <div style="vertical-align:middle;display:block;height:40px;width=280px">
+        <strong><font size="4">$item[3]</font></strong>
+        </div>
+        <br/>
+        <a href=$item[2] style="vertical-align:middle;display:block;height:40px;width=280px;">$:item[0]</a>
+        </div>
+    </div>
+	</body>
+</html>

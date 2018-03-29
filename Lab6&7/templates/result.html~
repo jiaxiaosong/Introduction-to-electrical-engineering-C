@@ -1,0 +1,33 @@
+$def with(res, keyword)
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta  charset="utf-8" />
+		<title>Text search page of the search engine</title>
+	</head>
+	
+	<body>
+           <form action="/s" method="GET">
+                <div style="font-size:31px">
+				<input type="radio" name="search_kind" value="text" id="text" checked="checked" style="width:62px;height:62px;vertical-align:middle;"><label for="text" style="vertical-align:middle;">text_search</label>
+				<input type="radio" name="search_kind" value="img" id="img" style="width:62px;height:62px;vertical-align:middle;"><label for="img"style="vertical-align:middle;">img_search</label><br />
+                </div> 
+				<nobr>
+                <a href="/"><img  src="static/logo.jpg" style="background-size:100% 100%;width:124px;height:62px;vertical-align:middle;"></a>
+				<input type="text" name="keyword" id="keyword" style="width:600px;height:62px;vertical-align:middle;"> 
+				<input type="submit" value="" style="background:url(static/button.jpg);background-size:100% 100%;width:62px;height:62px;vertical-align:middle;">
+				</nobr>
+        </form>
+        <br />
+        <br />
+        <hr />        
+
+$for item in res:
+    <font color="#0000CC" size="6">
+    $:item[0] <br /></font>
+    $:item[1] <br />
+    $:item[2] <br />
+    <br />
+
+	</body>
+</html>
